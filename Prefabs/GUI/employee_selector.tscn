@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://df1nq3mxcdo8n"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Components/Common/UIEmployeeSelector.gd" id="1_0ffgn"]
+[ext_resource type="PackedScene" uid="uid://08u8xusgdi50" path="res://Prefabs/GUI/EmployeeItem.tscn" id="2_atssf"]
+
+[node name="Employee Selector" type="VBoxContainer" node_paths=PackedStringArray("selected_employees_container", "available_employees_container")]
+script = ExtResource("1_0ffgn")
+selected_employees_container = NodePath("MarginContainer/Selected Container")
+available_employees_container = NodePath("MarginContainer2/Available Container")
+employeeItemPrafab = ExtResource("2_atssf")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Available Employees"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="Available Container" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Selected Employees" type="Label" parent="."]
+layout_mode = 2
+text = "Selected Employees"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="Selected Container" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2

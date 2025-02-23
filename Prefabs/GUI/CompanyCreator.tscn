@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqs6kiaagxjyg"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Windows/UICompanyCreator.gd" id="1_rwdur"]
+
+[node name="Company Creator" type="PanelContainer" node_paths=PackedStringArray("textEdit", "doneButton")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -122.0
+offset_right = 305.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rwdur")
+textEdit = NodePath("MarginContainer/VBoxContainer/TextEdit")
+doneButton = NodePath("MarginContainer/VBoxContainer/Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Name your Company"
+horizontal_alignment = 1
+
+[node name="Space" type="Container" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+placeholder_text = "Your awesome Company..."
+alignment = 1
+max_length = 30
+
+[node name="Expand" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"ButtonConfirm"
+text = "DONE"

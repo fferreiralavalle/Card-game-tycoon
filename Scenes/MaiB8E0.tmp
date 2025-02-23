@@ -1,0 +1,178 @@
+[gd_scene load_steps=11 format=3 uid="uid://3hk7feiyt65d"]
+
+[ext_resource type="PackedScene" uid="uid://ccxrjxpd34bgq" path="res://Prefabs/GUI/SetCreator.tscn" id="2_71e2a"]
+[ext_resource type="Script" path="res://Scripts/Managers/TimeManager.gd" id="2_oehxq"]
+[ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="2_qrio4"]
+[ext_resource type="Script" path="res://Scripts/Managers/CompanyManager.gd" id="3_8gng1"]
+[ext_resource type="PackedScene" uid="uid://dqs6kiaagxjyg" path="res://Prefabs/GUI/CompanyCreator.tscn" id="3_x45e5"]
+[ext_resource type="Script" path="res://Scripts/Managers/ActivityManager.gd" id="4_4crat"]
+[ext_resource type="Script" path="res://Scripts/GUI/Windows/UICompanyStats.gd" id="4_dspdn"]
+[ext_resource type="Script" path="res://Scripts/GUI/Windows/MechanicCreator/UIMechanicCreator.gd" id="8_8ogw4"]
+[ext_resource type="Script" path="res://Scripts/GUI/Windows/MechanicCreator/Screens/UIMechanicCreatorScreen.gd" id="9_f2nv5"]
+[ext_resource type="PackedScene" uid="uid://df1nq3mxcdo8n" path="res://Prefabs/GUI/employee_selector.tscn" id="10_r8vdj"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Masters" type="Node" parent="."]
+
+[node name="GameManager" type="Node" parent="Masters"]
+script = ExtResource("2_qrio4")
+
+[node name="TimeManager" type="Node" parent="Masters"]
+script = ExtResource("2_oehxq")
+weekInterval = 5.0
+
+[node name="CompanyManager" type="Node" parent="Masters"]
+script = ExtResource("3_8gng1")
+
+[node name="ActivityManager" type="Node" parent="Masters"]
+script = ExtResource("4_4crat")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Set Creator" parent="CanvasLayer" instance=ExtResource("2_71e2a")]
+mouse_filter = 2
+
+[node name="UIMechanicCreator" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("setCreationButton", "mechanic_creator")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("8_8ogw4")
+setCreationButton = NodePath("Create Mechanic")
+mechanic_creator = NodePath("UIMechanicCreatorScreen")
+
+[node name="UIMechanicCreatorScreen" type="PanelContainer" parent="CanvasLayer/UIMechanicCreator" node_paths=PackedStringArray("name_input", "complexity_label", "employee_selector", "finish")]
+visible = false
+custom_minimum_size = Vector2(450, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_f2nv5")
+name_input = NodePath("MarginContainer/VBoxContainer/TextEdit")
+complexity_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Complexity Value")
+employee_selector = NodePath("MarginContainer/VBoxContainer/Employee Selector")
+finish = NodePath("MarginContainer/VBoxContainer/Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Create a Mechanic"
+horizontal_alignment = 1
+
+[node name="Spacing" type="Control" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="TextEdit" type="LineEdit" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdasdasd"
+placeholder_text = "Name your Mechanic..."
+
+[node name="Spacing2" type="Control" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Complexity Label" type="Label" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Current Game Complexity:"
+
+[node name="Complexity Value" type="Label" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "84"
+
+[node name="Spacing4" type="Control" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Employee Selector" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer" instance=ExtResource("10_r8vdj")]
+layout_mode = 2
+
+[node name="Spacing3" type="Control" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/UIMechanicCreator/UIMechanicCreatorScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"ButtonConfirm"
+text = "Create Mechanic"
+
+[node name="Create Mechanic" type="Button" parent="CanvasLayer/UIMechanicCreator"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = -80.0
+offset_right = 370.0
+offset_bottom = -17.0
+grow_vertical = 0
+theme_type_variation = &"ButtonConfirm"
+text = "Create Mechanic"
+
+[node name="Company Creator" parent="CanvasLayer" instance=ExtResource("3_x45e5")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Company Info" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("compnayName", "money")]
+offset_right = 278.0
+offset_bottom = 87.0
+script = ExtResource("4_dspdn")
+compnayName = NodePath("MarginContainer/HBoxContainer/Company Name")
+money = NodePath("MarginContainer/HBoxContainer/Money Amount")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Company Info"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Company Info/MarginContainer"]
+layout_mode = 2
+
+[node name="Company Name" type="Label" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "No Name"
+
+[node name="Control" type="Control" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Money Title" type="Label" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Money: $"
+
+[node name="Money Amount" type="Label" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"

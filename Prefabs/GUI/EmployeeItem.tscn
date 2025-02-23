@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://08u8xusgdi50"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Components/Common/UIEmployeeItem.gd" id="1_yjs75"]
+
+[node name="Employee Item" type="TextureButton" node_paths=PackedStringArray("button", "setNameLabel")]
+custom_minimum_size = Vector2(50, 50)
+script = ExtResource("1_yjs75")
+button = NodePath(".")
+setNameLabel = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_right = 370.0
+offset_bottom = 23.0
+text = "Name Here"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 28.0
+offset_right = 370.0
+offset_bottom = 51.0
+theme_override_constants/separation = 20
+
+[node name="Design" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Stat Name" type="Label" parent="HBoxContainer/Design"]
+layout_mode = 2
+text = "Design Lv"
+
+[node name="Stat Level" type="Label" parent="HBoxContainer/Design"]
+layout_mode = 2
+text = "1"
+
+[node name="Art" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Stat Name" type="Label" parent="HBoxContainer/Art"]
+layout_mode = 2
+text = "Art Lv"
+
+[node name="Stat Level" type="Label" parent="HBoxContainer/Art"]
+layout_mode = 2
+text = "1"
+
+[node name="Lore" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Stat Name" type="Label" parent="HBoxContainer/Lore"]
+layout_mode = 2
+text = "Lore Lv"
+
+[node name="Stat Level" type="Label" parent="HBoxContainer/Lore"]
+layout_mode = 2
+text = "1"

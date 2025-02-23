@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp50vojbd2in7"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Components/Common/UIMechanicItem.gd" id="1_lpa7j"]
+[ext_resource type="Texture2D" uid="uid://by4i5o20p71q7" path="res://Sprites/GUI/Icons/sungraphica/Icon set 1/0.5x/Asset 23@0.5x.png" id="2_cwqc4"]
+
+[node name="Mechanic Item" type="CheckButton" node_paths=PackedStringArray("button")]
+custom_minimum_size = Vector2(0, 40)
+offset_right = 140.0
+offset_bottom = 53.0
+text = "Mechanic"
+script = ExtResource("1_lpa7j")
+button = NodePath(".")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 199.0
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Mechanic"
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+visible = false
+modulate = Color(0, 0.607843, 0.419608, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("2_cwqc4")
+expand_mode = 4
+stretch_mode = 4

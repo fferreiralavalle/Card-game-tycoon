@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0k5lbo83uol6"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Components/SetsInDevelopment/Components/UISetInDevelopment.gd" id="1_o7sp1"]
+
+[node name="Active Set" type="PanelContainer" node_paths=PackedStringArray("setNameLabel", "progressBar")]
+custom_minimum_size = Vector2(300, 50)
+script = ExtResource("1_o7sp1")
+setNameLabel = NodePath("MarginContainer/HBoxContainer/Label")
+progressBar = NodePath("MarginContainer/HBoxContainer/ProgressBar")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Set Name"
+
+[node name="Space" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+value = 0.5
+show_percentage = false

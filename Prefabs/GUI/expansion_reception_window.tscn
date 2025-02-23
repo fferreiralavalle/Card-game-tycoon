@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqau2l2wssrfr"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Components/Review/UIExpansionReception.gd" id="1_6pdo0"]
+[ext_resource type="PackedScene" uid="uid://banwwdwvr0qp2" path="res://Prefabs/GUI/Review.tscn" id="2_xy0vm"]
+
+[node name="Expansion Reception Window" type="PanelContainer" node_paths=PackedStringArray("review_container", "close_button")]
+auto_translate_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6pdo0")
+review_container = NodePath("VBoxContainer/Reviews")
+expansion_review_prefab = ExtResource("2_xy0vm")
+close_button = NodePath("VBoxContainer/Button")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Reception"
+horizontal_alignment = 1
+
+[node name="Reviews" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Review" parent="VBoxContainer/Reviews" instance=ExtResource("2_xy0vm")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Close"

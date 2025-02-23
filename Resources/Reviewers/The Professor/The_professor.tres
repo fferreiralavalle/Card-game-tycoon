@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Reviewer" load_steps=3 format=3 uid="uid://57aebdfkuan5"]
+
+[ext_resource type="Script" path="res://Scripts/Reviewers/Reviewer.gd" id="1_eynif"]
+[ext_resource type="Resource" uid="uid://cpk54xutdfx64" path="res://Resources/Reviewers/The Professor/The_professor._expected_statstres.tres" id="1_tcbwn"]
+
+[resource]
+script = ExtResource("1_eynif")
+id = "professor"
+name = "The Professor"
+initial_fans = 200
+growth_per_week = 10
+money_per_fan = 10.0
+weekly_expected_stat_growth_multiplier = 0.01
+base_expected_creation_stats = ExtResource("1_tcbwn")
