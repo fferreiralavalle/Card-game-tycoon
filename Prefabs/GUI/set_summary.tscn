@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkm1c5tivcopg"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Windows/SetCreator/Screens/UISetReview.gd" id="1_2ynds"]
+[ext_resource type="PackedScene" uid="uid://d4bkuqxbwnmx" path="res://Prefabs/GUI/ExpSummary.tscn" id="2_wx0s2"]
+
+[node name="Set Review" type="PanelContainer" node_paths=PackedStringArray("expContainer", "close_button")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -245.0
+offset_top = -245.0
+offset_right = 245.0
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ynds")
+expContainer = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Progress Container")
+expGainedPrefab = ExtResource("2_wx0s2")
+close_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/Done")
+
+[node name="PanelContainer" type="Panel" parent="."]
+custom_minimum_size = Vector2(450, 450)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Summary"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "Experience Gained"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 0
+
+[node name="Progress Container" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Done" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Done"

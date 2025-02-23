@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr3ook5o5s14o"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Components/Common/UIMechanicSelector.gd" id="1_e6t3u"]
+[ext_resource type="PackedScene" uid="uid://dp50vojbd2in7" path="res://Prefabs/GUI/mechanic_item.tscn" id="2_0arhp"]
+
+[node name="UIMechanicSelector" type="VBoxContainer" node_paths=PackedStringArray("mechanics_container")]
+offset_right = 259.0
+offset_bottom = 67.0
+script = ExtResource("1_e6t3u")
+mechanics_container = NodePath("VBoxContainer/VBoxContainer")
+mechanic_item_prefab = ExtResource("2_0arhp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Select Mechanics for this set"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2

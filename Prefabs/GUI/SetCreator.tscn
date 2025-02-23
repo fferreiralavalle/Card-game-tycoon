@@ -1,0 +1,257 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccxrjxpd34bgq"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Windows/SetCreator/UICardSetDevelopment.gd" id="1_ks4v8"]
+[ext_resource type="Script" path="res://Scripts/GUI/Windows/SetCreator/Screens/UISetBasics.gd" id="2_6py0r"]
+[ext_resource type="Script" path="res://Scripts/GUI/Windows/SetCreator/Screens/UISetEmployees.gd" id="3_r8j4h"]
+[ext_resource type="Script" path="res://Scripts/GUI/Components/SetsInDevelopment/UISetsInDevelopmentList.gd" id="5_4j3r3"]
+[ext_resource type="PackedScene" uid="uid://df1nq3mxcdo8n" path="res://Prefabs/GUI/employee_selector.tscn" id="5_ra0g3"]
+[ext_resource type="Script" path="res://Scripts/GUI/Windows/SetCreator/Screens/UISetMechanics.gd" id="6_8tu13"]
+[ext_resource type="PackedScene" uid="uid://c0k5lbo83uol6" path="res://Prefabs/GUI/ActiveSetItem.tscn" id="6_aqqcp"]
+[ext_resource type="PackedScene" uid="uid://dkm1c5tivcopg" path="res://Prefabs/GUI/set_summary.tscn" id="7_0vxrd"]
+[ext_resource type="PackedScene" uid="uid://cr3ook5o5s14o" path="res://Prefabs/GUI/mechanic_selector.tscn" id="7_a4o1l"]
+
+[node name="Set Creator" type="Control" node_paths=PackedStringArray("setCreationButton", "setBasics", "setEmployees", "set_mechanics")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+script = ExtResource("1_ks4v8")
+setCreationButton = NodePath("Button")
+setBasics = NodePath("Set Basics")
+setEmployees = NodePath("Employee Selector")
+set_mechanics = NodePath("Mechanic Selector")
+set_review_prefab = ExtResource("7_0vxrd")
+
+[node name="Set Basics" type="CenterContainer" parent="." node_paths=PackedStringArray("name_input", "art_slider", "design_slider", "lore_slider", "totalPointsLabel", "nextButton")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -245.0
+offset_right = 225.0
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_6py0r")
+name_input = NodePath("Panel/MarginContainer/VContainer/NameInput")
+art_slider = NodePath("Panel/MarginContainer/VContainer/ArtSlider")
+design_slider = NodePath("Panel/MarginContainer/VContainer/DesignSlider")
+lore_slider = NodePath("Panel/MarginContainer/VContainer/LoreSlider")
+totalPointsLabel = NodePath("Panel/MarginContainer/VContainer/HBoxContainer/Points Value")
+nextButton = NodePath("Panel/MarginContainer/VContainer/Button")
+
+[node name="Panel" type="PanelContainer" parent="Set Basics"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Set Basics/Panel"]
+layout_mode = 2
+
+[node name="VContainer" type="VBoxContainer" parent="Set Basics/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Name your set" type="Label" parent="Set Basics/Panel/MarginContainer/VContainer"]
+layout_mode = 2
+text = "Name your Set"
+
+[node name="NameInput" type="LineEdit" parent="Set Basics/Panel/MarginContainer/VContainer"]
+layout_mode = 2
+placeholder_text = "Name.."
+max_length = 30
+
+[node name="Spacing2" type="Control" parent="Set Basics/Panel/MarginContainer/VContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Set Basics/Panel/MarginContainer/VContainer"]
+layout_mode = 2
+text = "Design"
+
+[node name="DesignSlider" type="HSlider" parent="Set Basics/Panel/MarginContainer/VContainer"]
+layout_mode = 2
+
+[node name="Art Label" type="Label" parent="Set Basics/Panel/MarginContainer/VContainer"]
+layout_mode = 2
+text = "Art"
+
+[node name="ArtSlider" type="HSlider" parent="Set Basics/Panel/MarginContainer/VContainer"]
+layout_mode = 2
+
+[node name="Lore" type="Label" parent="Set Basics/Panel/MarginContainer/VContainer"]
+layout_mode = 2
+text = "Lore"
+
+[node name="LoreSlider" type="HSlider" parent="Set Basics/Panel/MarginContainer/VContainer"]
+layout_mode = 2
+
+[node name="OutputLabel" type="Label" parent="Set Basics/Panel/MarginContainer/VContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Set Basics/Panel/MarginContainer/VContainer"]
+layout_mode = 2
+
+[node name="Points Label" type="Label" parent="Set Basics/Panel/MarginContainer/VContainer/HBoxContainer"]
+layout_mode = 2
+text = "Points:"
+
+[node name="Space Between" type="Control" parent="Set Basics/Panel/MarginContainer/VContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Points Value" type="Label" parent="Set Basics/Panel/MarginContainer/VContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="Spacing" type="Control" parent="Set Basics/Panel/MarginContainer/VContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="Set Basics/Panel/MarginContainer/VContainer"]
+layout_mode = 2
+text = "Next"
+
+[node name="Employee Selector" type="PanelContainer" parent="." node_paths=PackedStringArray("employee_selector", "nextButton")]
+visible = false
+custom_minimum_size = Vector2(450, 300)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -150.0
+offset_right = 305.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("3_r8j4h")
+employee_selector = NodePath("MarginContainer/VBoxContainer/Employee Selector")
+nextButton = NodePath("MarginContainer/VBoxContainer/Done")
+
+[node name="MarginContainer" type="MarginContainer" parent="Employee Selector"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Employee Selector/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Employee Selector/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Assign Employees"
+horizontal_alignment = 1
+
+[node name="Space" type="Control" parent="Employee Selector/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Employee Selector" parent="Employee Selector/MarginContainer/VBoxContainer" instance=ExtResource("5_ra0g3")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Employee Selector/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Done" type="Button" parent="Employee Selector/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"ButtonConfirm"
+text = "Done"
+
+[node name="Mechanic Selector" type="PanelContainer" parent="." node_paths=PackedStringArray("mechanic_selector", "nextButton")]
+visible = false
+custom_minimum_size = Vector2(450, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -150.0
+offset_right = 305.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("6_8tu13")
+mechanic_selector = NodePath("MarginContainer/VBoxContainer/UIMechanicSelector")
+nextButton = NodePath("MarginContainer/VBoxContainer/Done")
+
+[node name="MarginContainer" type="MarginContainer" parent="Mechanic Selector"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Mechanic Selector/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Mechanic Selector/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Assign Mechanics"
+horizontal_alignment = 1
+
+[node name="Space" type="Control" parent="Mechanic Selector/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="UIMechanicSelector" parent="Mechanic Selector/MarginContainer/VBoxContainer" instance=ExtResource("7_a4o1l")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Mechanic Selector/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Done" type="Button" parent="Mechanic Selector/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"ButtonConfirm"
+text = "Done"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -80.0
+offset_right = 179.0
+offset_bottom = -17.0
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 10
+theme_type_variation = &"ButtonConfirm"
+text = "Create New Set"
+
+[node name="Sets In Development" type="Container" parent="." node_paths=PackedStringArray("activeSetContainer")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -160.0
+offset_right = 420.0
+offset_bottom = -120.0
+grow_vertical = 0
+script = ExtResource("5_4j3r3")
+activeSetContainer = NodePath("VBoxContainer")
+setInDevelopmentPrefab = ExtResource("6_aqqcp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sets In Development"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[editable path="Mechanic Selector/MarginContainer/VBoxContainer/UIMechanicSelector"]

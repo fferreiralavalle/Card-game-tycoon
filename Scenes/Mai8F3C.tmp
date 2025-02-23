@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://3hk7feiyt65d"]
+
+[ext_resource type="PackedScene" uid="uid://ccxrjxpd34bgq" path="res://Prefabs/GUI/SetCreator.tscn" id="2_71e2a"]
+[ext_resource type="Script" path="res://scripts/Managers/GameManager.gd" id="2_qrio4"]
+[ext_resource type="PackedScene" uid="uid://dqs6kiaagxjyg" path="res://Prefabs/GUI/CompanyCreator.tscn" id="3_x45e5"]
+[ext_resource type="Script" path="res://scripts/GUI/Windows/UICompanyStats.gd" id="4_dspdn"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Masters" type="Node" parent="."]
+
+[node name="GameManager" type="Node" parent="Masters"]
+script = ExtResource("2_qrio4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Set Creator" parent="CanvasLayer" instance=ExtResource("2_71e2a")]
+
+[node name="Company Creator" parent="CanvasLayer" instance=ExtResource("3_x45e5")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Company Info" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("compnayName", "money")]
+offset_right = 278.0
+offset_bottom = 87.0
+script = ExtResource("4_dspdn")
+compnayName = NodePath("MarginContainer/HBoxContainer/Company Name")
+money = NodePath("MarginContainer/HBoxContainer/Money Amount")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Company Info"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Company Info/MarginContainer"]
+layout_mode = 2
+
+[node name="Company Name" type="Label" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "No Name"
+
+[node name="Control" type="Control" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Money Title" type="Label" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Money: $"
+
+[node name="Money Amount" type="Label" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
