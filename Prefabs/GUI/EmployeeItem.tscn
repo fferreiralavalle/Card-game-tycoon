@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" path="res://Scripts/GUI/Components/Common/UIEmployeeItem.gd" id="1_yjs75"]
 
-[node name="Employee Item" type="TextureButton" node_paths=PackedStringArray("button", "setNameLabel")]
+[node name="Employee Item" type="TextureButton" node_paths=PackedStringArray("button", "setNameLabel", "design_level", "art_level", "lore_level")]
 custom_minimum_size = Vector2(50, 50)
 script = ExtResource("1_yjs75")
 button = NodePath(".")
 setNameLabel = NodePath("Label")
+design_level = NodePath("HBoxContainer/Design/Stat Level")
+art_level = NodePath("HBoxContainer/Art/Stat Level")
+lore_level = NodePath("HBoxContainer/Lore/Stat Level")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

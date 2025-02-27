@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SetCreationStats" load_steps=2 format=3 uid="uid://i4nk4iodrwm0"]
+
+[ext_resource type="Script" path="res://Scripts/CardGameData/Stats/SetCreationStats.gd" id="1_vsos0"]
+
+[resource]
+script = ExtResource("1_vsos0")
+design = 20.0
+art = 100.0
+lore = 100.0

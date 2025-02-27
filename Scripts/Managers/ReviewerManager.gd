@@ -16,6 +16,7 @@ static var instance: ReviewerManager
 
 func _ready() -> void:
 	ActivityManager.instance.on_activity_finished.connect(check_for_expansion_finished)
+	TimeManager.instance.on_weeks_passed.connect(handle_fan_pool_growth)
 
 func _init():
 	instance = self;
@@ -49,12 +50,21 @@ func load_all_reviewers_from_folder(folder_path: String) -> Array[Reviewer]:
 				if resource is Reviewer:
 					var reviewer: Reviewer = (resource as Reviewer).duplicate(true)
 					reviewer.fans_pool = FansPool.new(reviewer.initial_fans)
+					reviewer.current_expected_creation_stats = SetCreationStats.new()
+					reviewer.current_expected_creation_stats.design = reviewer.base_expected_creation_stats.design
+					reviewer.current_expected_creation_stats.art = reviewer.base_expected_creation_stats.art
+					reviewer.current_expected_creation_stats.lore = reviewer.base_expected_creation_stats.lore
 					reviewer_list.append(reviewer)
 			
 			file_name = dir.get_next()
 
 	return reviewer_list
 
+func handle_fan_pool_growth(weeks_passed: int):
+	for reviewer in reviewers:
+		reviewer.fans_pool.add_new_fans(reviewer.growth_per_week)
+		print(reviewer.name, " available fans: ", reviewer.fans_pool.new_fans)
+	
 func check_for_expansion_finished(activity: Activity):
 	if (activity is CreateSetActivity):
 		var expansion = (activity as CreateSetActivity).active_set

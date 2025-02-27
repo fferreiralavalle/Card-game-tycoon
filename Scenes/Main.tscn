@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://3hk7feiyt65d"]
+[gd_scene load_steps=22 format=3 uid="uid://3hk7feiyt65d"]
 
 [ext_resource type="PackedScene" uid="uid://ccxrjxpd34bgq" path="res://Prefabs/GUI/SetCreator.tscn" id="2_71e2a"]
 [ext_resource type="Script" path="res://Scripts/Managers/TimeManager.gd" id="2_oehxq"]
@@ -6,13 +6,21 @@
 [ext_resource type="Script" path="res://Scripts/Managers/CompanyManager.gd" id="3_8gng1"]
 [ext_resource type="PackedScene" uid="uid://dqs6kiaagxjyg" path="res://Prefabs/GUI/CompanyCreator.tscn" id="3_x45e5"]
 [ext_resource type="Script" path="res://Scripts/Managers/ActivityManager.gd" id="4_4crat"]
-[ext_resource type="Script" path="res://Scripts/GUI/Windows/UICompanyStats.gd" id="4_dspdn"]
+[ext_resource type="Script" path="res://Scripts/GUI/Components/UICompanyStats.gd" id="4_dspdn"]
 [ext_resource type="Script" path="res://Scripts/Managers/ReviewerManager.gd" id="5_jxplg"]
 [ext_resource type="Script" path="res://Scripts/GUI/Windows/MechanicCreator/UIMechanicCreator.gd" id="8_8ogw4"]
 [ext_resource type="Script" path="res://Scripts/GUI/Windows/MechanicCreator/Screens/UIMechanicCreatorScreen.gd" id="9_f2nv5"]
 [ext_resource type="PackedScene" uid="uid://df1nq3mxcdo8n" path="res://Prefabs/GUI/employee_selector.tscn" id="10_r8vdj"]
+[ext_resource type="PackedScene" uid="uid://sivf1gu1o2c6" path="res://Prefabs/GUI/money_change.tscn" id="13_0xrn3"]
 [ext_resource type="PackedScene" uid="uid://dqau2l2wssrfr" path="res://Prefabs/GUI/expansion_reception_window.tscn" id="13_8qbbi"]
+[ext_resource type="Script" path="res://Scripts/GUI/Components/MoneyChange/UIMoneyChangeList.gd" id="13_n16k7"]
+[ext_resource type="Script" path="res://Scripts/GUI/Components/FansChange/UIFansChangeList.gd" id="13_ordag"]
+[ext_resource type="PackedScene" uid="uid://b6sw7t0xni152" path="res://Prefabs/GUI/fan_change.tscn" id="14_eeph7"]
 [ext_resource type="Script" path="res://Scripts/Managers/WindowManager.gd" id="14_pkoxc"]
+[ext_resource type="Script" path="res://Scripts/GUI/Components/SetsInDevelopment/UISetsInDevelopmentList.gd" id="14_uv8pl"]
+[ext_resource type="PackedScene" uid="uid://c0k5lbo83uol6" path="res://Prefabs/GUI/ActiveSetItem.tscn" id="15_fo7qd"]
+[ext_resource type="Script" path="res://Scripts/GUI/Components/MechanicsInDevelopment/UIMechanicsInDevelopmentList.gd" id="16_tt1ms"]
+[ext_resource type="PackedScene" uid="uid://cyipktsk2tpck" path="res://Prefabs/GUI/mechanic_activity.tscn" id="17_j36ca"]
 
 [node name="Main" type="Node2D"]
 
@@ -20,10 +28,10 @@
 
 [node name="GameManager" type="Node" parent="Masters"]
 script = ExtResource("2_qrio4")
+initialDebugMoney = 10000.0
 
 [node name="TimeManager" type="Node" parent="Masters"]
 script = ExtResource("2_oehxq")
-weekInterval = 5.0
 
 [node name="CompanyManager" type="Node" parent="Masters"]
 script = ExtResource("3_8gng1")
@@ -191,6 +199,16 @@ layout_mode = 2
 layout_mode = 2
 text = "Money: $"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer/Money Title" node_paths=PackedStringArray("list_container")]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 70.0
+offset_right = 128.0
+offset_bottom = 133.0
+script = ExtResource("13_n16k7")
+list_container = NodePath(".")
+money_change_prefab = ExtResource("13_0xrn3")
+
 [node name="Money Amount" type="Label" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "0"
@@ -202,6 +220,15 @@ layout_mode = 2
 [node name="Fans Title" type="Label" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Fans:"
+
+[node name="Fans Change" type="VBoxContainer" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer/Fans Title" node_paths=PackedStringArray("list_container")]
+layout_mode = 1
+offset_top = 70.0
+offset_right = 100.0
+offset_bottom = 110.0
+script = ExtResource("13_ordag")
+list_container = NodePath(".")
+fan_change_prefab = ExtResource("14_eeph7")
 
 [node name="Fans Amount" type="Label" parent="CanvasLayer/Company Info/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -219,6 +246,46 @@ size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("14_pkoxc")
 window_container = NodePath(".")
+
+[node name="Activity List" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -140.0
+offset_right = 60.0
+offset_bottom = -100.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Activity Container" type="VBoxContainer" parent="CanvasLayer/Activity List"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -130.0
+offset_right = 300.0
+grow_vertical = 0
+alignment = 2
+
+[node name="Expansion Activity" type="Control" parent="CanvasLayer/Activity List" node_paths=PackedStringArray("activeSetContainer")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("14_uv8pl")
+activeSetContainer = NodePath("../Activity Container")
+setInDevelopmentPrefab = ExtResource("15_fo7qd")
+
+[node name="Mechanics Activity" type="Control" parent="CanvasLayer/Activity List" node_paths=PackedStringArray("active_mechanic_container")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("16_tt1ms")
+active_mechanic_container = NodePath("../Activity Container")
+mechanic_in_development_prefab = ExtResource("17_j36ca")
 
 [editable path="CanvasLayer/Set Creator"]
 [editable path="CanvasLayer/Set Creator/Mechanic Selector/MarginContainer/VBoxContainer/UIMechanicSelector"]

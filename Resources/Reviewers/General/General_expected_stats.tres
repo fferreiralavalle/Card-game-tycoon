@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_66rnn")
-design = 15.0
-art = 15.0
-lore = 15.0
+design = 20.0
+art = 20.0
+lore = 20.0

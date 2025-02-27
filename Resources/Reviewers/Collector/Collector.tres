@@ -10,5 +10,5 @@ name = "The Hoarder 67"
 initial_fans = 150
 growth_per_week = 5
 money_per_fan = 30.0
-weekly_expected_stat_growth_multiplier = 0.01
+weekly_expected_stat_growth_multiplier = 0.0
 base_expected_creation_stats = ExtResource("1_rlgrd")

@@ -15,9 +15,6 @@ func _ready() -> void:
 	LoadSets()
 
 func LoadSets():
-	for node in activeSetContainer.get_children():
-		remove_child(node)
-		node.queue_free()
 	for activity_set in ActivityManager.instance.get_activities_by_id(CreateSetActivity.id):
 		add_new_set(activity_set as CreateSetActivity)
 
@@ -26,16 +23,15 @@ func check_for_new_set(new_activity: Activity):
 		add_new_set(new_activity as CreateSetActivity)
 
 func add_new_set(newActivity: CreateSetActivity):
-		var activeSetActivity = newActivity as CreateSetActivity
-		var activeSetUI = setInDevelopmentPrefab.instantiate() as UISetInDevelopment
-		activeSetUI.Init(activeSetActivity)
-		activeSetContainer.add_child(activeSetUI)
-		newActivity.on_set_finished.connect(remove_new_set)
+	var activeSetActivity = newActivity as CreateSetActivity
+	var activeSetUI = setInDevelopmentPrefab.instantiate() as UISetInDevelopment
+	activeSetUI.Init(activeSetActivity)
+	activeSetContainer.add_child(activeSetUI)
+	newActivity.on_set_finished.connect(remove_new_set)
 
 func remove_new_set(finished_set: Set):
 	for node in activeSetContainer.get_children():
 		var activeSetUI = node as UISetInDevelopment
 		if (activeSetUI.activity.active_set == finished_set):
-			remove_child(node)
 			node.queue_free()
 			break;

@@ -32,24 +32,24 @@ func set_company(_company: Company):
 	company = _company
 	company.employees.append(Employee.new("Design", "Nerd",
 		CompanyCreationStats.new(
-				CreationStatLevel.new(CreationStat.new("Design", "Design"),5,0),
+				CreationStatLevel.new(CreationStat.new("Design", "Design"),2,0),
 				CreationStatLevel.new(CreationStat.new("Art", "Art"),0,0),
 				CreationStatLevel.new(CreationStat.new("Lore", "Lore"),0,0),
 		)
 	))
-	company.employees.append(Employee.new("Art", "Nerd",
-		CompanyCreationStats.new(
-				CreationStatLevel.new(CreationStat.new("Design", "Design"),0,0),
-				CreationStatLevel.new(CreationStat.new("Art", "Art"),4,0),
-				CreationStatLevel.new(CreationStat.new("Lore", "Lore"),0,0),
-		)
-	))
+	#company.employees.append(Employee.new("Art", "Nerd",
+	#	CompanyCreationStats.new(
+	#			CreationStatLevel.new(CreationStat.new("Design", "Design"),0,0),
+	#			CreationStatLevel.new(CreationStat.new("Art", "Art"),4,0),
+	#			CreationStatLevel.new(CreationStat.new("Lore", "Lore"),0,0),
+	#	)
+	#))
 	var card_game = CardGame.new("New Card Game", "player_card_game_0")
-	card_game.mechanics.append(Mechanic.new("Charge", 50))
-	card_game.mechanics.append(Mechanic.new("Taunt", 50))
-	card_game.mechanics.append(Mechanic.new("Spell Damage", 50))
-	card_game.mechanics.append(Mechanic.new("Grow", 50))
-	card_game.mechanics.append(Mechanic.new("Burn", 50))
+	#card_game.mechanics.append(Mechanic.new("Charge", 50))
+	#card_game.mechanics.append(Mechanic.new("Taunt", 50))
+	#card_game.mechanics.append(Mechanic.new("Spell Damage", 50))
+	#card_game.mechanics.append(Mechanic.new("Grow", 50))
+	#card_game.mechanics.append(Mechanic.new("Burn", 50))
 	company.add_card_game(
 		card_game
 	)
@@ -74,9 +74,13 @@ func handle_months_passed(months_passed: int):
 		gain_income(
 			IncomeInfo.new(
 				-employee.salary * months_passed,
-				"Employee Salaries"
+				"Salaries"
 			)
 		)
+	gain_income(IncomeInfo.new(
+		-CompanyConstants.BASE_EXPENSES_PER_MONTH * months_passed,
+		"Expenses"
+	))
 
 func get_available_employees() -> Array[Employee]:
 	var available_employees: Array[Employee] = []
@@ -108,7 +112,8 @@ func handle_sets_weekly_fans() -> void:
 		for expansion in card_game.sets:
 			var exp_income = get_expansion_weekly_fans(expansion)
 			fans_change += exp_income
-		on_fans_changed.emit(FansChange.new(fans_change, "Fans Growth"), card_game.get_fans())
+		if (fans_change != 0):
+			on_fans_changed.emit(FansChange.new(fans_change, "Growth"), card_game.get_fans())
 
 
 func get_expansion_week_income(expansion: Set) -> float:

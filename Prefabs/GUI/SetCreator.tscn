@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccxrjxpd34bgq"]
+[gd_scene load_steps=8 format=3 uid="uid://ccxrjxpd34bgq"]
 
 [ext_resource type="Script" path="res://Scripts/GUI/Windows/SetCreator/UICardSetDevelopment.gd" id="1_ks4v8"]
 [ext_resource type="Script" path="res://Scripts/GUI/Windows/SetCreator/Screens/UISetBasics.gd" id="2_6py0r"]
 [ext_resource type="Script" path="res://Scripts/GUI/Windows/SetCreator/Screens/UISetEmployees.gd" id="3_r8j4h"]
-[ext_resource type="Script" path="res://Scripts/GUI/Components/SetsInDevelopment/UISetsInDevelopmentList.gd" id="5_4j3r3"]
 [ext_resource type="PackedScene" uid="uid://df1nq3mxcdo8n" path="res://Prefabs/GUI/employee_selector.tscn" id="5_ra0g3"]
 [ext_resource type="Script" path="res://Scripts/GUI/Windows/SetCreator/Screens/UISetMechanics.gd" id="6_8tu13"]
-[ext_resource type="PackedScene" uid="uid://c0k5lbo83uol6" path="res://Prefabs/GUI/ActiveSetItem.tscn" id="6_aqqcp"]
 [ext_resource type="PackedScene" uid="uid://dkm1c5tivcopg" path="res://Prefabs/GUI/set_summary.tscn" id="7_0vxrd"]
 [ext_resource type="PackedScene" uid="uid://cr3ook5o5s14o" path="res://Prefabs/GUI/mechanic_selector.tscn" id="7_a4o1l"]
 
@@ -234,24 +232,5 @@ size_flags_horizontal = 6
 size_flags_vertical = 10
 theme_type_variation = &"ButtonConfirm"
 text = "Create New Set"
-
-[node name="Sets In Development" type="Container" parent="." node_paths=PackedStringArray("activeSetContainer")]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -160.0
-offset_right = 420.0
-offset_bottom = -120.0
-grow_vertical = 0
-script = ExtResource("5_4j3r3")
-activeSetContainer = NodePath("VBoxContainer")
-setInDevelopmentPrefab = ExtResource("6_aqqcp")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Sets In Development"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
 
 [editable path="Mechanic Selector/MarginContainer/VBoxContainer/UIMechanicSelector"]

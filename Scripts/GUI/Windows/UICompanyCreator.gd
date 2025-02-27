@@ -7,5 +7,5 @@ func _ready():
 	doneButton.pressed.connect(OnSubmit)
 	
 func OnSubmit():
-	GameManager.instance.CreateCompany(textEdit.text, 5000)
+	GameManager.instance.CreateCompany(textEdit.text, CompanyConstants.INITIAL_MONEY)
 	queue_free()

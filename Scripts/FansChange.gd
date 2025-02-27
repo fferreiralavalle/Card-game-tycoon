@@ -1,8 +1,8 @@
 class_name FansChange
 
 var name: String
-var amount: float
+var amount: int
 
-func _init(amount: float, name: String) -> void:
+func _init(amount: int, name: String) -> void:
 		self.amount = amount
 		self.name = name

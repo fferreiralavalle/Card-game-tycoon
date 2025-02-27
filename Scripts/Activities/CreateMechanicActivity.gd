@@ -31,3 +31,4 @@ func get_activity_id(): return id
 
 func handle_finish():
 	CompanyManager.instance.get_active_card_game().mechanics.append(mechanic)
+	super.handle_finish()

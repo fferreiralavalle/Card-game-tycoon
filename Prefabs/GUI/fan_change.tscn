@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6sw7t0xni152"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Components/FansChange/UIFanChange.gd" id="1_38hei"]
+
+[node name="Fan Change" type="PanelContainer" node_paths=PackedStringArray("label", "amount")]
+self_modulate = Color(1, 1, 1, 0.588235)
+show_behind_parent = true
+script = ExtResource("1_38hei")
+label = NodePath("HBoxContainer/Label")
+amount = NodePath("HBoxContainer/Label2")
+increase_color = Color(0, 0.607843, 0.419608, 1)
+decrease_color = Color(0.946454, 0.0835853, 0.189897, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "Base Public"
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "+34"
